@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    background-color: #fff;
+    padding: 20px 30px 20px 80px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    line-height: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.div1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    list-style:none
+}
+
+.div1 ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    font-size: 15px;
+    background-color: #f2f3f5;
+    margin: 0;
+    padding-top: 55px;
+    overflow-y: scroll;
+    color: #34495e;
+}
+
+.div1 {
+    position: absolute;
+    margin: 30px 0;
+    width: 100%;
+    transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <ul id="new-list" >
+        </ul>
+    </div>
+     <script type="module">
+                     const newsList =document.getElementById("new-list")
+                    const basicURL = "https://hacker-news.firebaseio.com/v0/";
+                    const tops = await fetch(`${basicURL}topstories.json?print=pretty`).then(res => res.json())
+                    const list = tops.slice(0, 10)
+                    for (const itemID of list){
+                     const post = await fetch(`${basicURL}item/${itemID}.json?print=pretty`).then(res => res.json())
+                     const li = document.createElement("li")
+                     li.innerText = post.title
+                     newsList.append(li)
+                    }
+     </script>
+</body>
+</html>
