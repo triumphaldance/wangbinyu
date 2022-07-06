@@ -26,7 +26,7 @@ function App() {
           <span className="title">
             <a href={post.url} target="_blank" rel="noopener">{post.title}</a>
             
-            <span classNameName="host">({new URL(post.url).host})</span>
+            <span className="host">{post.url===undefined ? null : `(${new URL(post.url).host})`}</span>
             
           </span>
           <br /> 
